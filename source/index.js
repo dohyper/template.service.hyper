@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const NAME = "template";
 
-const discovery = require("../discovery")(NAME);
+const discovery = require("./discovery")(NAME);
 
 const definitions = [
     {
