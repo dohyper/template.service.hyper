@@ -1,5 +1,5 @@
 {
-  "name": "template.service.hyper",
+  "name": "{{service.name}}.service.hyper",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

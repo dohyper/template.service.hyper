@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const NAME = "template";
+const NAME = "{{service.name}}";
 
 const discovery = require("./discovery")(NAME);
 
