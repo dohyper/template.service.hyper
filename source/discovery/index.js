@@ -1,5 +1,10 @@
 const { Etcd3 } = require('etcd3');
-const client = new Etcd3();
+const client = new Etcd3({
+    hosts: process.env.DISCOVERY_HYPER_URL ?? `http://${process.env.DISCOVERY_HYPER_HOST ?? "localhost"}:${process.env.DISCOVERY_HYPER_PORT ?? 2379}`
+});
+
+let hostname = process.env.HOSTNAME;
+let port = process.env.PORT;
 
 const exits = ["SIGINT", "SIGTERM", "SIGQUIT", "SIGUSR1", "SIGUSR2"]
 
@@ -17,8 +22,13 @@ class Discovery {
     }
 
     async register(definitions) {
-        const hostname = process.env.HOSTNAME
-        const port = process.env.PORT
+        if (process.env.NODE_ENV == "development") {
+            const localtunnel = require('localtunnel');
+            const tunnel = await localtunnel({ host: "http://localtunnel.me", port: port, local_https: false });
+            hostname = tunnel.url;
+            port = 443;
+        }
+
         await client.put(`/services/${this.name}`).value(JSON.stringify({
             hostname,
             port,
