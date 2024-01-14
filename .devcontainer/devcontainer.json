@@ -10,6 +10,11 @@
         "ghcr.io/devcontainers/features/node:1": {},
         "ghcr.io/devcontainers-contrib/features/svu-asdf:2": {}
     },
+    "containerEnv": {
+        // "DISCOVERY_HYPER_HOSTNAME": "localhost:",
+        // "DISCOVERY_HYPER_PORT": "http://localhost:",
+        "DISCOVERY_HYPER_URL": "http://localhost:33333"
+    },
     // Features to add to the dev container. More info: https://containers.dev/features.
     // "features": {},
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -17,7 +22,15 @@
     // Use 'postCreateCommand' to run commands after the container is created.
     // "postCreateCommand": "uname -a",
     // Configure tool-specific properties.
-    // "customizations": {},
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "Tim-Koehler.helm-intellisense",
+                "ByHayk.tpl-synopsys",
+                "ms-kubernetes-tools.vscode-kubernetes-tools"
+            ]
+        }
+    },
     // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
     // "remoteUser": "root"
     "postCreateCommand": "echo alias dopatch=\\'git tag \\`svu patch\\` '&&' svu\\' >> /home/vscode/.bashrc; echo alias dominor=\\'git tag \\`svu minor\\` '&&' svu\\' >> /home/vscode/.bashrc;echo alias domajor=\\'git tag \\`svu major\\` '&&' svu\\' >> /home/vscode/.bashrc"
