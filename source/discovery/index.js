@@ -24,7 +24,7 @@ class Discovery {
     async register(definitions) {
         if (process.env.NODE_ENV == "development") {
             const localtunnel = require('localtunnel');
-            const tunnel = await localtunnel({ host: "http://localtunnel.me", port: port, local_https: false });
+            const tunnel = await localtunnel({ port: port, local_https: false });
             hostname = tunnel.url;
             port = 443;
         }
