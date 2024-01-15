@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-resources-configmap
+data:
+  PORT: {{ .Values.configuration.port | quote }}
+  URL: {{ .Values.configuration.discovery.url | default (printf "http://%s-resources-hyper-service:80" .Release.Name) }}
