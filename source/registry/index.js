@@ -1,11 +1,4 @@
-const { Etcd3 } = require("etcd3");
-const client = new Etcd3({
-  hosts:
-    process.env.DISCOVERY_HYPER_URL ??
-    `http://${process.env.DISCOVERY_HYPER_HOST ?? "localhost"}:${
-      process.env.DISCOVERY_HYPER_PORT ?? 2379
-    }`,
-});
+const discovery = require("../services/discovery.hyper");
 
 let PORT = process.env.PORT;
 let URL = process.env.URL;
@@ -13,9 +6,9 @@ let URL = process.env.URL;
 const exits = ["SIGINT", "SIGTERM", "SIGQUIT", "SIGUSR1", "SIGUSR2"];
 
 class Discovery {
-  constructor(name) {
+  constructor(name, client) {
     this.name = name;
-    this.client = new Etcd3();
+    this.client = client;
     exits.forEach((exit) => {
       process.on(exit, async () => {
         this.unregister().then(() => {
@@ -35,7 +28,7 @@ class Discovery {
       URL = tunnel.url;
     }
 
-    await client
+    await this.client
       .put(`/services/${this.name}`)
       .value(
         JSON.stringify({
@@ -44,18 +37,18 @@ class Discovery {
         })
       )
       .then(() => {
-        console.log(`service ${this.name} registered.`);
+        console.log(`registry: service ${this.name} registered.`);
       });
   }
 
   async unregister() {
-    await client
+    await this.client
       .delete()
       .key(`/services/${this.name}`)
       .then(() => {
-        console.log(`service ${this.name} unregistered.`);
+        console.log(`registry: service ${this.name} unregistered.`);
       });
   }
 }
 
-module.exports = (name) => new Discovery(name);
+module.exports = (name) => new Discovery(name, discovery);

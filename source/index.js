@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const NAME = "{{service.name}}";
 
-const discovery = require("./discovery")(NAME);
+const registry = require("./registry")(NAME);
 
 const definitions = [
     {
@@ -16,7 +16,7 @@ const definitions = [
     }
 ];
 
-discovery.register(definitions);
+registry.register(definitions);
 
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
