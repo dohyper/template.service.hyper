@@ -1,6 +1,6 @@
 const discovery = require("../services/discovery.hyper");
+const fs = require("fs");
 
-let PORT = process.env.PORT;
 let URL = process.env.URL;
 
 const exits = ["SIGINT", "SIGTERM", "SIGQUIT", "SIGUSR1", "SIGUSR2"];
@@ -20,12 +20,12 @@ class Discovery {
 
   async register(definitions) {
     if (process.env.NODE_ENV == "development") {
-      const localtunnel = require("localtunnel");
-      const tunnel = await localtunnel({
-        port: PORT,
-        local_https: false,
-      });
-      URL = tunnel.url;
+      try {
+        URL = fs.readFileSync(".tunnel", "utf-8");
+      } catch (error) {
+        URL = `http://localhost:${process.env.PORT}`
+        console.log(error.message);
+      }
     }
 
     await this.client

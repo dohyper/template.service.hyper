@@ -8,7 +8,9 @@
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
         "ghcr.io/devcontainers/features/node:1": {},
-        "ghcr.io/devcontainers-contrib/features/svu-asdf:2": {}
+        "ghcr.io/devcontainers-contrib/features/svu-asdf:2": {},
+        "ghcr.io/devcontainers-contrib/features/localtunnel-npm:1": {},
+		"ghcr.io/devcontainers-contrib/features/etcd:1": {}
     },
     "containerEnv": {
         // "DISCOVERY_HYPER_HOSTNAME": "localhost:",
