@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: resources-hyper-container
-          image: registry.hyper.mathematikoi.co/resources.service.hyper
+          image: registry.hyper.mathematikoi.agency/resources.service.hyper
           envFrom:
             - configMapRef:
                 name: {{ .Release.Name }}-resources-configmap
@@ -22,3 +22,6 @@ spec:
             - containerPort: {{ .Values.configuration.port }}
               name: {{ .Release.Name }}-r-h-c-p
           imagePullPolicy: Always
+      imagePullSecrets:
+        - name: docker-registry-credentials
+      

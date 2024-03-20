@@ -14,6 +14,6 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: build image
-        run: "docker build -t registry.hyper.mathematikoi.co/{{service.name}}.service.hyper:$\{{  github.ref_name }} ."
+        run: "docker build -t registry.hyper.mathematikoi.agency/{{service.name}}.service.hyper:$\{{  github.ref_name }} ."
       - name: push image
-        run: "docker push registry.hyper.mathematikoi.co/{{service.name}}.service.hyper:$\{{  github.ref_name }}"
+        run: "docker push registry.hyper.mathematikoi.agency/{{service.name}}.service.hyper:$\{{  github.ref_name }}"
