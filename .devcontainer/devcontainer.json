@@ -12,11 +12,6 @@
         "ghcr.io/devcontainers-contrib/features/localtunnel-npm:1": {},
 		"ghcr.io/devcontainers-contrib/features/etcd:1": {}
     },
-    "containerEnv": {
-        // "DISCOVERY_HYPER_HOSTNAME": "localhost:",
-        // "DISCOVERY_HYPER_PORT": "http://localhost:",
-        "DISCOVERY_HYPER_URL": "http://localhost:33333"
-    },
     // Features to add to the dev container. More info: https://containers.dev/features.
     // "features": {},
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
