@@ -3,7 +3,7 @@
 {
     "name": "{{name}}",
     // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    "image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"dockerComposeFile": "docker-compose.yml",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
