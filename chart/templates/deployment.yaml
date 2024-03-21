@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-template-service-hyper-deployment
+  name: {{ .Release.Name }}-{{name}}-service-hyper-deployment
 spec:
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-template-service-hyper
+      app: {{ .Release.Name }}-{{name}}-service-hyper
   replicas: 1
-  template:
+  {{name}}:
     metadata:
       labels:
-        app: {{ .Release.Name }}-template-service-hyper
+        app: {{ .Release.Name }}-{{name}}-service-hyper
     spec:
       containers:
-        - name: template-service-hyper-container
-          image: registry.hyper.mathematikoi.agency/template.service.hyper::{{ .Chart.Version }}
+        - name: {{name}}-service-hyper-container
+          image: registry.hyper.mathematikoi.agency/{{name}}.service.hyper::{{ .Chart.Version }}
           envFrom:
             - configMapRef:
-                name: {{ .Release.Name }}-template-service-hyper-configmap
+                name: {{ .Release.Name }}-{{name}}-service-hyper-configmap
             - secretRef:
                 name: discovery-hyper-password
                 key: DISCOVERY_HYPER_PASSWORD

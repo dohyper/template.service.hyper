@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-    "name": "{{service.name}}.service.hyper",
+    "name": "{{name}}",
     // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
     "image": "mcr.microsoft.com/devcontainers/base:jammy",
     "features": {
@@ -35,5 +35,4 @@
     },
     // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
     // "remoteUser": "root"
-    "postCreateCommand": "echo alias dopatch=\\'git tag \\`svu patch\\` '&&' svu\\' >> /home/vscode/.bashrc; echo alias dominor=\\'git tag \\`svu minor\\` '&&' svu\\' >> /home/vscode/.bashrc;echo alias domajor=\\'git tag \\`svu major\\` '&&' svu\\' >> /home/vscode/.bashrc"
 }
