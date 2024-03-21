@@ -1,7 +1,19 @@
 require("dotenv").config();
 
 const NAME = "{{service.name}}";
-const definitions = require("./definitions");
+
+const definitions = [
+    {
+        name: "resource",
+        applicability: {
+            read: true,
+            create: false,
+            update: false,
+            delete: false,
+        }
+    }
+];
+
 const registry = require("./services/discovery.hyper");
 
 registry
