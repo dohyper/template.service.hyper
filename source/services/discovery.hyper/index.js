@@ -1,11 +1,5 @@
-const { Etcd3 } = require("etcd3");
+const Discovery = require("@dohyper/registry.discovery.hyper")
 
-const client = new Etcd3({
-  hosts:
-    process.env.DISCOVERY_HYPER_URL ??
-    `http://${process.env.DISCOVERY_HYPER_HOST ?? "localhost"}:${
-      process.env.DISCOVERY_HYPER_PORT ?? 2379
-    }`,
-});
+const client = new Discovery(process.env.DISCOVERY_HYPER_URL, {password: process.env.DISCOVERY_HYPER_PASSWORD})
 
 module.exports = client;
