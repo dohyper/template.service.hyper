@@ -2,8 +2,6 @@ require("dotenv").config();
 
 const NAME = "{{service.name}}";
 
-const registry = require("./registry")(NAME);
-
 const definitions = [
     {
         name: "resource",
@@ -16,7 +14,13 @@ const definitions = [
     }
 ];
 
-registry.register(definitions);
+const registry = require("./services/discovery.hyper");
+
+registry
+  .register(NAME, { url: process.env.URL, definitions })
+  .catch((error) => {
+    console.log(error);
+  });
 
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
