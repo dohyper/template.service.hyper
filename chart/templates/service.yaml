@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-resources-hyper-service
+  name: {{ .Release.Name }}-template-service-hyper-service
 spec:
   selector:
-    app: {{ .Release.Name }}-resources-hyper
+    app: {{ .Release.Name }}-template-service-hyper
   ports:
-    - name: {{ .Release.Name }}-r-h-s-p
+    - name: http
       port: 80
-      targetPort: {{ .Release.Name }}-r-h-c-p
+      targetPort: http
       protocol: TCP
