@@ -5,7 +5,7 @@ metadata:
   name: {{ .Release.Name }}-template-service-hyper-configmap
 data:
   PORT: {{ .Values.configuration.port | quote }}
-  URL: {{ .Values.configuration.discovery.url | default (printf "http://%s-template-service-service:80" .Release.Name) }}
+  URL: {{ .Values.configuration.discovery.url | default (printf "http://%s-template-service-hyper:80" .Release.Name) }}
   DISCOVERY_HYPER_URL: {{ .Values.configuration.discovery.url | default (printf "https://discovery.%s" .Values.global.host) }}
   DATABASE_URL: {{ printf "%s/template.service.hyper" $database_url }}
   NODE_TLS_REJECT_UNAUTHORIZED: "0"

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: template-service-hyper-container
-          image: registry.hyper.mathematikoi.agency/template.service.hyper
+          image: registry.hyper.mathematikoi.agency/template.service.hyper::{{ .Chart.Version }}
           envFrom:
             - configMapRef:
                 name: {{ .Release.Name }}-template-service-hyper-configmap
