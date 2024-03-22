@@ -5,7 +5,6 @@
     // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"dockerComposeFile": "docker-compose.yaml",
     "service": "project",
-    "workspaceFolder": "/workspaces",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
