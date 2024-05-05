@@ -1,0 +1,28 @@
+name: release helm chart
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - name: release chart
+        uses: stefanprodan/helm-gh-pages@master
+        with:
+          token: ${{ secrets.CHART_HYPER_REPOSITORY_ACCESS_TOKEN }}
+          charts_dir: .
+          charts_url: https://dohyper.github.io/chart.hyper
+          owner: dohyper
+          repository: chart.hyper
+          branch: main
+          target_dir: .
+          commit_username: actions
+          commit_email: johndoe@example.com

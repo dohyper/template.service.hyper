@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: \{{ .Release.Name }}-{{name}}-service-hyper-service
+spec:
+  selector:
+    app: \{{ .Release.Name }}-{{name}}-service-hyper
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP

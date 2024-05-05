@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: \{{ .Release.Name }}-{{name}}-service-hyper-deployment
+spec:
+  selector:
+    matchLabels:
+      app: \{{ .Release.Name }}-{{name}}-service-hyper
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: \{{ .Release.Name }}-{{name}}-service-hyper
+    spec:
+      containers:
+        - name: {{name}}-service-hyper-container
+          image: registry.hyper.mathematikoi.agency/{{name}}.service.hyper::\{{ .Chart.Version }}
+          envFrom:
+            - configMapRef:
+                name: \{{ .Release.Name }}-{{name}}-service-hyper-configmap
+            - secretRef:
+                name: discovery-hyper-password
+                key: DISCOVERY_HYPER_PASSWORD
+          ports:
+            - containerPort: \{{ .Values.configuration.port }}
+              name: http
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: docker-registry-credentials

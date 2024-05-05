@@ -1,0 +1,21 @@
+name: build
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    name: build and publish
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: docker login
+        run: "docker login -u hyper -p $\{{ secrets.DOCKER_REGISTRY_PASSWORD }} registry.hyper.mathematikoi.agency"
+      - name: build image
+        run: "docker build -t registry.hyper.mathematikoi.agency/{{name}}.service.hyper:$\{{  github.ref_name }} ."
+      - name: push image
+        run: "docker push registry.hyper.mathematikoi.agency/{{name}}.service.hyper:$\{{  github.ref_name }}"

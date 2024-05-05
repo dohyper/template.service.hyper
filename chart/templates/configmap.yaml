@@ -1,0 +1,11 @@
+\{{- $database_url := or .Values.configuration.database.url .Values.global.database.url  -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: \{{ .Release.Name }}-{{name}}-service-hyper-configmap
+data:
+  PORT: \{{ .Values.configuration.port | quote }}
+  URL: \{{ .Values.configuration.discovery.url | default (printf "http://%s-{{name}}-service-hyper:80" .Release.Name) }}
+  DISCOVERY_HYPER_URL: \{{ .Values.configuration.discovery.url | default (printf "https://discovery.%s" .Values.global.host) }}
+  DATABASE_URL: \{{ printf "%s/template.service.hyper" $database_url }}
+  NODE_TLS_REJECT_UNAUTHORIZED: "0"
